@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+int binarysearch(int a[],int x,int first,int last)
+{
+    while(first<=last)
+    {
+        int mid=(first+last)/2;
+        if(a[mid]==x)
+            return mid;
+        if(a[mid]<x)
+           first=mid+1;
+        else
+            last=mid-1;
+    }
+    return -1;
+}
+int main()
+{
+    int a[]={6,9,3,97,5};
+    int x=97;
+    int n=sizeof(a)/sizeof(a[0]);
+    int y=binarysearch(a,x,0,n-1);
+    if(y==-1)
+    {
+        cout<<"not found";
+    }
+    else
+    {
+        cout<<y<<endl;
+    }
+}
