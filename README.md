@@ -1,2 +1,0 @@
-# psychic-spoon
-CSE242
