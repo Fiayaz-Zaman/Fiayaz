@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+void Merge (int a[],int x,int y,int z)
+{
+    int n1=y-x+1;
+    int n2=z-y;
+    int left[n1+1];
+    int right[n2+1];
+    for(int i=0;i<n1;i++)
+    {
+        left[i]=a[x+i];
+    }
+    for(int j=0;j<n2;j++)
+    {
+        right[j]=a[y+j+1];
+    }
+    int i=0;
+    int j=0;
+    left [n1]=100;
+    right[n2]=100;
+    for(int k=x;k<=z;k++)
+    {
+        if(left[i]<=right[j])
+        {
+            a[k]=left[i];
+            i=i+1;
+        }
+        else
+        {
+            a[k]=right[j];
+            j=j+1;
+        }
+    }
+}
+
+void mergesort(int a[],int x,int z)
+{
+    int y;
+    if(x<z)
+    {
+        y=(x+z)/2;
+        mergesort(a,x,y);
+        mergesort(a,y+1,z);
+        Merge(a,x,y,z);
+    }
+}
+void show (int a[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        cout<<a[i]<<"  ";
+    }
+}
+int main()
+{
+    int a[]={3,6,7,4,6,8};
+    int n=sizeof(a)/sizeof(a[0]);
+    mergesort(a,0,n-1);
+    cout<<"Sorted array: "<<endl;
+    show(a,n);
+    return 0;
+}
